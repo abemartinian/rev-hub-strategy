@@ -84,7 +84,7 @@
 </head>
 <body>
 
-<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Revenue Hub: Sales Leadership Dashboard with four sections covering baseline performance, opportunity gaps, strategic bets, and operating discipline</h2>
+<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Revenue Hub: Sales Leadership Dashboard with baseline performance, opportunity gaps, strategic bets, operating discipline, actions, and team performance views</h2>
 
 <div class="db">
 <div class="header-wrap">
@@ -93,18 +93,18 @@
       <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52 0-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
       <span>GitHub Revenue Hub</span>
     </div>
-    <div id="headerSubtitle" class="header-subtitle">Sales leadership · FY27 Q2 · As of Apr 9, 2026</div>
+    <div id="headerSubtitle" class="header-subtitle">Sales leadership · FY26 Q4 · As of Apr 9, 2026</div>
   </div>
   <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end">
-    <span class="badge badge-y">Q2 In Flight</span>
+    <span class="badge badge-y">Q4 In Flight</span>
     <button id="exportBtn" class="export-btn" type="button" aria-label="Export dashboard data">Export ↓</button>
     <select id="sdFilter" class="director-select" aria-label="Senior Director filter">
       <option value="all">All senior directors</option>
-      <option value="brittany-howard">Brittany Howard</option>
-      <option value="howlin-jackson">Howlin Jackson</option>
-      <option value="john-mayer">John Mayer</option>
-      <option value="daisy-jones">Daisy Jones</option>
-      <option value="bad-bunny">Bad Bunny</option>
+      <option value="brittany-howard">Enterprise · Brittany Howard</option>
+      <option value="howlin-jackson">Digital Sales · Howlin Jackson</option>
+      <option value="john-mayer">Mid-Market · John Mayer</option>
+      <option value="daisy-jones">SMB · Daisy Jones</option>
+      <option value="bad-bunny">Sales Development · Bad Bunny</option>
     </select>
     <select id="dirFilter" class="director-select" aria-label="Director filter">
       <option value="all">All directors</option>
@@ -118,6 +118,7 @@
   <button onclick="switchTab('a3',this)">A3 · Strategic bets</button>
   <button onclick="switchTab('a4',this)">A4 · Operating discipline</button>
   <button onclick="switchTab('a5',this)">A5 · Actions</button>
+  <button onclick="switchTab('a6',this)">A6 · Team performance</button>
 </div>
 
 <div id="a1" class="section active">
@@ -125,8 +126,8 @@
   <div class="grid-4">
     <div class="mcard"><div id="kpi1Label" class="lbl">ARR (total)</div><div id="kpi1Value" class="val">$214M</div><div id="kpi1Sub" class="sub up">↑ 22% YoY</div></div>
     <div class="mcard"><div id="kpi2Label" class="lbl">eARR (expansion)</div><div id="kpi2Value" class="val">$38M</div><div id="kpi2Sub" class="sub up">↑ 31% YoY</div></div>
-    <div class="mcard"><div id="kpi3Label" class="lbl">Q2 attainment vs plan</div><div id="kpi3Value" class="val">73%</div><div id="kpi3Sub" class="sub neu">Week 9 of 13</div></div>
-    <div class="mcard"><div id="kpi4Label" class="lbl">Pipeline coverage</div><div id="kpi4Value" class="val">3.1×</div><div id="kpi4Sub" class="sub dn">↓ Target 4.0×</div></div>
+    <div class="mcard"><div id="kpi3Label" class="lbl">Q4 attainment vs plan</div><div id="kpi3Value" class="val">63%</div><div id="kpi3Sub" class="sub neu">Week 9 of 13</div></div>
+    <div class="mcard"><div id="kpi4Label" class="lbl">Pipeline coverage</div><div id="kpi4Value" class="val">3.1× <span style="color:#9a6700;cursor:pointer;font-size:10px;margin-left:4px" title="See A5 Actions" onclick="switchTab('a5', document.querySelectorAll('.nav button')[4])">⚠</span></div><div id="kpi4Sub" class="sub dn">↓ Target 4.0×</div></div>
   </div>
 
   <div class="grid-3">
@@ -182,8 +183,8 @@
       <thead><tr><th>Region</th><th>Meetings / week</th><th>vs. target</th><th>Calls / week</th><th>vs. target</th><th>Status</th></tr></thead>
       <tbody id="activityPacingBody">
         <tr class="region-row" data-region="AMER"><td>AMER</td><td>487</td><td class="up">+4%</td><td>1,204</td><td class="up">+2%</td><td><span class="badge badge-g">On track</span></td></tr>
-        <tr class="region-row" data-region="EMEA"><td>EMEA</td><td>298</td><td class="dn">−12%</td><td>741</td><td class="dn">−9%</td><td><span class="badge badge-y">At risk</span></td></tr>
-        <tr class="region-row" data-region="APJ"><td>APJ</td><td>173</td><td class="dn">−18%</td><td>388</td><td class="dn">−22%</td><td><span class="badge badge-r">Behind</span></td></tr>
+        <tr class="region-row" data-region="EMEA"><td>EMEA</td><td>298</td><td class="dn">−12%</td><td>741</td><td class="dn">−9%</td><td><span class="badge badge-y">At risk</span><span style="color:#9a6700;cursor:pointer;font-size:10px;margin-left:4px" title="See A5 Actions" onclick="switchTab('a5', document.querySelectorAll('.nav button')[4])">⚠</span></td></tr>
+        <tr class="region-row" data-region="APJ"><td>APJ</td><td>173</td><td class="dn">−18%</td><td>388</td><td class="dn">−22%</td><td><span class="badge badge-r">Behind</span><span style="color:#9a6700;cursor:pointer;font-size:10px;margin-left:4px" title="See A5 Actions" onclick="switchTab('a5', document.querySelectorAll('.nav button')[4])">⚠</span></td></tr>
         <tr class="region-row" data-region="LATAM"><td>LATAM</td><td>114</td><td class="up">+1%</td><td>293</td><td class="neu">0%</td><td><span class="badge badge-g">On track</span></td></tr>
       </tbody>
     </table>
@@ -206,7 +207,7 @@
   <div class="card" style="margin-bottom:1rem">
     <h3>New pipeline created <span class="pill pill-lead">Leading</span></h3>
     <table class="tbl">
-      <thead><tr><th>Region</th><th>Q2 QTD</th><th>WoW</th><th>MoM</th><th>QoQ</th></tr></thead>
+      <thead><tr><th>Region</th><th>Q4 QTD</th><th>WoW</th><th>MoM</th><th>QoQ</th></tr></thead>
       <tbody>
         <tr><td>AMER</td><td>$43M</td><td class="up">+3.2%</td><td class="up">+11%</td><td class="up">+22%</td></tr>
         <tr><td>EMEA</td><td>$29M</td><td class="dn">-1.4%</td><td class="up">+6%</td><td class="up">+14%</td></tr>
@@ -221,7 +222,7 @@
   <div class="grid-3">
     <div class="mcard"><div class="lbl">TAM penetration (global)</div><div class="val">8.4%</div><div class="sub neu">$214M of $2.5B TAM</div></div>
     <div class="mcard"><div class="lbl">Quota capacity vs. headcount</div><div class="val">−14%</div><div class="sub dn">31 open roles vs. plan</div></div>
-    <div class="mcard"><div class="lbl">Partner attach rate</div><div class="val">34%</div><div class="sub dn">↓ Target 45%</div></div>
+    <div class="mcard"><div class="lbl">Partner attach rate</div><div class="val">34% <span style="color:#9a6700;cursor:pointer;font-size:10px;margin-left:4px" title="See A5 Actions" onclick="switchTab('a5', document.querySelectorAll('.nav button')[4])">⚠</span></div><div class="sub dn">↓ Target 45%</div></div>
   </div>
 
   <div class="grid-2">
@@ -235,7 +236,7 @@
         <thead><tr><th>Region</th><th>Quota cap.</th><th>Ramp adj.</th><th>Gap</th></tr></thead>
         <tbody id="capacityBody">
           <tr class="region-row" data-region="AMER"><td>AMER</td><td>$108M</td><td>$97M</td><td class="dn">−$11M</td></tr>
-          <tr class="region-row" data-region="EMEA"><td>EMEA</td><td>$72M</td><td>$58M</td><td class="dn">−$14M</td></tr>
+          <tr class="region-row" data-region="EMEA"><td>EMEA</td><td>$72M</td><td>$58M</td><td class="dn">−$14M <span style="color:#9a6700;cursor:pointer;font-size:10px;margin-left:4px" title="See A5 Actions" onclick="switchTab('a5', document.querySelectorAll('.nav button')[4])">⚠</span></td></tr>
           <tr class="region-row" data-region="APJ"><td>APJ</td><td>$48M</td><td>$34M</td><td class="dn">−$14M</td></tr>
           <tr class="region-row" data-region="LATAM"><td>LATAM</td><td>$32M</td><td>$29M</td><td class="dn">−$3M</td></tr>
         </tbody>
@@ -250,8 +251,8 @@
       <table class="tbl">
         <thead><tr><th>Category</th><th>ARR at risk</th><th>NRR signal</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td>Up for renewal Q2</td><td>$28M</td><td>104%</td><td><span class="badge badge-g">Healthy</span></td></tr>
-          <tr><td>Expansion targets Q2</td><td>$14M upside</td><td>—</td><td><span class="badge badge-y">Tracking</span></td></tr>
+          <tr><td>Up for renewal Q4</td><td>$28M</td><td>104%</td><td><span class="badge badge-g">Healthy</span></td></tr>
+          <tr><td>Expansion targets Q4</td><td>$14M upside</td><td>—</td><td><span class="badge badge-y">Tracking</span></td></tr>
           <tr><td>Churn risk flagged</td><td>$6.2M</td><td>—</td><td><span class="badge badge-r">Escalate</span></td></tr>
         </tbody>
       </table>
@@ -283,7 +284,7 @@
 
 <div id="a3" class="section">
   <div class="purpose">Close the loop between leadership priorities and outcomes early enough to course correct — not after the quarter is closed.</div>
-  <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:1rem">FY27 growth levers — bet vs. outcome tracking. Updated weekly.</div>
+  <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:1rem">FY26 growth levers — bet vs. outcome tracking. Updated weekly.</div>
 
   <div class="bet-card">
     <div style="display:flex;justify-content:space-between;align-items:flex-start">
@@ -291,7 +292,7 @@
       <span class="badge badge-y">Tracking</span>
     </div>
     <div class="grid-4" style="margin-bottom:0">
-      <div class="mcard"><div class="lbl">New logo pace</div><div class="val">68%</div><div class="sub neu">vs. Q2 plan</div></div>
+      <div class="mcard"><div class="lbl">New logo pace</div><div class="val">68%</div><div class="sub neu">vs. Q4 plan</div></div>
       <div class="mcard"><div class="lbl">Dev-led deals</div><div class="val">142</div><div class="sub up">↑ 38% QoQ</div></div>
       <div class="mcard"><div class="lbl">Agent workflow attach</div><div class="val">41%</div><div class="sub dn">Target 55%</div></div>
       <div class="mcard"><div class="lbl">Avg TTV (days)</div><div class="val">18</div><div class="sub up">↓ from 24</div></div>
@@ -339,11 +340,11 @@
   <div class="bet-card" style="margin-bottom:0">
     <div style="display:flex;justify-content:space-between;align-items:flex-start">
       <div><h4>CS, Microsoft &amp; partners</h4><p>Ecosystem-led growth scaling</p></div>
-      <span class="badge badge-r">Behind</span>
+      <span><span class="badge badge-r">Behind</span><span style="color:#9a6700;cursor:pointer;font-size:10px;margin-left:4px" title="See A5 Actions" onclick="switchTab('a5', document.querySelectorAll('.nav button')[4])">⚠</span></span>
     </div>
     <div class="grid-4" style="margin-bottom:0">
       <div class="mcard"><div class="lbl">Partner attach rate</div><div class="val">34%</div><div class="sub dn">Target 45%</div></div>
-      <div class="mcard"><div class="lbl">MSFT co-sell deals</div><div class="val">28</div><div class="sub dn">Target 50 Q2</div></div>
+      <div class="mcard"><div class="lbl">MSFT co-sell deals</div><div class="val">28</div><div class="sub dn">Target 50 Q4</div></div>
       <div class="mcard"><div class="lbl">Partner-reg. bookings</div><div class="val">$9.4M</div><div class="sub neu">18% of total</div></div>
       <div class="mcard"><div class="lbl">Partner QoQ Δ</div><div class="val">+2pts</div><div class="sub dn">Slow ramp</div></div>
     </div>
@@ -360,7 +361,7 @@
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
       <span class="tag" style="background:#ddf4ff;color:#0550ae">Owner: VP Sales + Regional Directors</span>
       <span class="tag" style="background:#fff8c5;color:#9a6700">Frequency: Every Monday 30min</span>
-      <span class="tag" style="background:#dafbe1;color:#116329">Last reviewed: Apr 7, 2026</span>
+      <span class="tag" style="background:#dafbe1;color:#116329">Last reviewed: Jan 7, 2026</span>
     </div>
     <ol class="q-list">
       <li>Is pipeline coverage on track?</li>
@@ -375,7 +376,7 @@
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
       <span class="tag" style="background:#ddf4ff;color:#0550ae">Owner: Sales leadership + Finance</span>
       <span class="tag" style="background:#fff8c5;color:#9a6700">Frequency: First Tuesday monthly</span>
-      <span class="tag" style="background:#dafbe1;color:#116329">Last reviewed: Apr 1, 2026</span>
+      <span class="tag" style="background:#dafbe1;color:#116329">Last reviewed: Jan 1, 2026</span>
     </div>
     <ol class="q-list">
       <li>Are we pacing to plan by region/segment?</li>
@@ -390,11 +391,11 @@
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
       <span class="tag" style="background:#ddf4ff;color:#0550ae">Owner: Sales VPs + Senior Directors + RevOps</span>
       <span class="tag" style="background:#fff8c5;color:#9a6700">Frequency: End of quarter</span>
-      <span class="tag" style="background:#dafbe1;color:#116329">Last reviewed: Jan 28, 2026 Q1 QBR</span>
+      <span class="tag" style="background:#dafbe1;color:#116329">Last reviewed: Oct 28, 2025 Q3 QBR</span>
     </div>
     <ol class="q-list">
-      <li>Are FY27 growth bets working?</li>
-      <li>Where do we course correct for Q3?</li>
+      <li>Are FY26 growth bets working?</li>
+      <li>Where do we course correct for Q4?</li>
       <li>What strategic tradeoffs are required?</li>
     </ol>
   </div>
@@ -443,7 +444,110 @@
       <div style="font-size:12px;color:var(--color-text-secondary)">EMEA · Hozier</div>
       <p class="action-meta" style="margin-top:10px">Source 8-10 Stage 1 opps from Tems; consider reallocating 1 AE from APAC.</p>
       <div class="action-meta"><strong>Owner:</strong> Hozier + John Mayer</div>
-      <div class="action-meta"><strong>Timeline:</strong> Before Q2 week 10</div>
+      <div class="action-meta"><strong>Timeline:</strong> Before Q4 week 10</div>
+    </div>
+</div>
+</div>
+
+<div id="a6" class="section">
+  <div class="purpose">Team performance operating view for forecast confidence, attainment shape, deal quality, and ramp progress.</div>
+
+  <div class="card" style="margin-bottom:1rem">
+    <h3>Forecast vs. commit · FY26 Q4</h3>
+    <table class="tbl">
+      <thead><tr><th>View</th><th>Commit</th><th>Best Case</th><th>Model Forecast</th><th>vs. Plan</th></tr></thead>
+      <tbody>
+        <tr><td>Total</td><td>$186M</td><td>$204M</td><td>$196M</td><td class="dn">−$18M</td></tr>
+        <tr><td>AMER</td><td>$91M</td><td>$101M</td><td>$96M</td><td class="dn">−$13M</td></tr>
+        <tr><td>EMEA</td><td>$54M</td><td>$61M</td><td>$57M</td><td class="dn">−$14M</td></tr>
+        <tr><td>APAC</td><td>$28M</td><td>$34M</td><td>$31M</td><td class="dn">−$17M</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>Quota attainment distribution</h3>
+      <table class="tbl">
+        <thead><tr><th>Band</th><th>Reps</th><th>% of team</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>&gt; 100%</td><td>34</td><td>18%</td><td><div class="bar-bg"><div class="bar-fill" style="width:18%;background:#1a7f37"></div></div></td></tr>
+          <tr><td>75–100%</td><td>61</td><td>33%</td><td><div class="bar-bg"><div class="bar-fill" style="width:33%;background:#0969da"></div></div></td></tr>
+          <tr><td>50–75%</td><td>58</td><td>31%</td><td><div class="bar-bg"><div class="bar-fill" style="width:31%;background:#9a6700"></div></div></td></tr>
+          <tr><td>&lt; 50%</td><td>34</td><td>18%</td><td><div class="bar-bg"><div class="bar-fill" style="width:18%;background:#cf222e"></div></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Rep leaderboard — top 10 attainment</h3>
+      <table class="tbl">
+        <thead><tr><th>Rep</th><th>Region</th><th>Segment</th><th>Attainment</th><th>vs. Quota</th></tr></thead>
+        <tbody>
+          <tr><td>A. Reeves</td><td>AMER</td><td>Enterprise</td><td class="up">142%</td><td>+$4.1M</td></tr>
+          <tr><td>C. Nakamura</td><td>AMER</td><td>Enterprise</td><td class="up">138%</td><td>+$3.8M</td></tr>
+          <tr><td>D. Osei</td><td>EMEA</td><td>Mid-Market</td><td class="up">131%</td><td>+$2.2M</td></tr>
+          <tr><td>F. Torres</td><td>AMER</td><td>Mid-Market</td><td class="up">128%</td><td>+$2.1M</td></tr>
+          <tr><td>G. Lindqvist</td><td>EMEA</td><td>Enterprise</td><td class="up">124%</td><td>+$1.9M</td></tr>
+          <tr><td>H. Patel</td><td>APAC</td><td>Enterprise</td><td class="up">119%</td><td>+$1.4M</td></tr>
+          <tr><td>I. Moreau</td><td>AMER</td><td>SMB</td><td class="up">116%</td><td>+$0.9M</td></tr>
+          <tr><td>J. Kimura</td><td>APAC</td><td>Mid-Market</td><td class="up">114%</td><td>+$0.8M</td></tr>
+          <tr><td>K. Adeyemi</td><td>EMEA</td><td>Enterprise</td><td class="up">112%</td><td>+$0.7M</td></tr>
+          <tr><td>L. Santos</td><td>AMER</td><td>Mid-Market</td><td class="up">111%</td><td>+$0.6M</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin:1rem 0">
+    <h3>Open deal inspection — top 15 deals</h3>
+    <table class="tbl">
+      <thead><tr><th>Account</th><th>Region</th><th>Segment</th><th>Stage</th><th>Amount</th><th>Close date</th><th>Days in stage</th><th>Risk</th></tr></thead>
+      <tbody>
+        <tr><td>Acme Corp</td><td>AMER</td><td>Enterprise</td><td>Stage 4</td><td>$2.1M</td><td>Jan 31</td><td>28</td><td><span class="badge badge-r">⚠ Stale</span></td></tr>
+        <tr><td>Meridian Health</td><td>EMEA</td><td>Enterprise</td><td>Stage 3</td><td>$1.8M</td><td>Feb 7</td><td>14</td><td>—</td></tr>
+        <tr><td>Quantum Dynamics</td><td>AMER</td><td>Mid-Market</td><td>Stage 5</td><td>$980K</td><td>Jan 24</td><td>6</td><td><span class="badge badge-g">On track</span></td></tr>
+        <tr><td>NovaTech</td><td>APAC</td><td>Enterprise</td><td>Stage 3</td><td>$1.4M</td><td>Feb 14</td><td>21</td><td><span class="badge badge-r">⚠ Stale</span></td></tr>
+        <tr><td>Pinnacle Group</td><td>AMER</td><td>Enterprise</td><td>Stage 4</td><td>$1.2M</td><td>Jan 28</td><td>19</td><td>—</td></tr>
+        <tr><td>Solaris Industries</td><td>EMEA</td><td>Mid-Market</td><td>Stage 4</td><td>$860K</td><td>Jan 31</td><td>32</td><td><span class="badge badge-r">⚠ Stale</span></td></tr>
+        <tr><td>Apex Financial</td><td>AMER</td><td>Enterprise</td><td>Stage 5</td><td>$1.6M</td><td>Jan 22</td><td>4</td><td><span class="badge badge-g">On track</span></td></tr>
+        <tr><td>Cascade Systems</td><td>EMEA</td><td>Enterprise</td><td>Stage 3</td><td>$1.1M</td><td>Feb 14</td><td>17</td><td>—</td></tr>
+        <tr><td>Ironclad Tech</td><td>AMER</td><td>Mid-Market</td><td>Stage 2</td><td>$640K</td><td>Feb 21</td><td>38</td><td><span class="badge badge-r">⚠ Stale</span></td></tr>
+        <tr><td>BlueSky Analytics</td><td>APAC</td><td>Mid-Market</td><td>Stage 4</td><td>$720K</td><td>Jan 31</td><td>11</td><td>—</td></tr>
+        <tr><td>Vertex Solutions</td><td>AMER</td><td>SMB</td><td>Stage 3</td><td>$480K</td><td>Feb 7</td><td>9</td><td><span class="badge badge-g">On track</span></td></tr>
+        <tr><td>Harbour Capital</td><td>EMEA</td><td>Enterprise</td><td>Stage 4</td><td>$1.3M</td><td>Feb 7</td><td>24</td><td><span class="badge badge-r">⚠ Stale</span></td></tr>
+        <tr><td>Redwood Partners</td><td>AMER</td><td>Enterprise</td><td>Stage 5</td><td>$2.4M</td><td>Jan 17</td><td>3</td><td><span class="badge badge-g">On track</span></td></tr>
+        <tr><td>CloudBridge</td><td>EMEA</td><td>Mid-Market</td><td>Stage 3</td><td>$560K</td><td>Feb 14</td><td>13</td><td>—</td></tr>
+        <tr><td>Pacific Ventures</td><td>APAC</td><td>Enterprise</td><td>Stage 2</td><td>$890K</td><td>Feb 28</td><td>42</td><td><span class="badge badge-r">⚠ Stale</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>Stage velocity — deals overdue by stage</h3>
+      <table class="tbl">
+        <thead><tr><th>Stage</th><th>Avg days in stage</th><th>Benchmark</th><th># Overdue deals</th><th>Value at risk</th></tr></thead>
+        <tbody>
+          <tr><td>Stage 1 – Qualify <span class="badge badge-r">Overdue</span></td><td class="dn">18d</td><td>14d</td><td>42</td><td>$12M</td></tr>
+          <tr><td>Stage 2 – Discover <span class="badge badge-r">Overdue</span></td><td class="dn">24d</td><td>18d</td><td>31</td><td>$18M</td></tr>
+          <tr><td>Stage 3 – Solution <span class="badge badge-r">Overdue</span></td><td class="dn">29d</td><td>21d</td><td>24</td><td>$22M</td></tr>
+          <tr><td>Stage 4 – Commit <span class="badge badge-r">Overdue</span></td><td class="dn">34d</td><td>24d</td><td>18</td><td>$31M</td></tr>
+          <tr><td>Stage 5 – Close <span class="badge badge-r">Overdue</span></td><td class="dn">12d</td><td>7d</td><td>8</td><td>$14M</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>New hire ramp tracker</h3>
+      <table class="tbl">
+        <thead><tr><th>Rep</th><th>Region</th><th>Hire date</th><th>Ramp target</th><th>Current attainment</th><th>vs. Ramp curve</th></tr></thead>
+        <tbody>
+          <tr><td>M. Johansson</td><td>AMER</td><td>Nov 3</td><td>Feb 3</td><td>41%</td><td class="dn">↓ −12pts</td></tr>
+          <tr><td>N. Okonkwo</td><td>EMEA</td><td>Oct 14</td><td>Jan 14</td><td>68%</td><td class="up">↑ +8pts</td></tr>
+          <tr><td>O. Fitzgerald</td><td>APAC</td><td>Dec 1</td><td>Mar 1</td><td>22%</td><td class="dn">↓ −18pts</td></tr>
+          <tr><td>P. Andersen</td><td>AMER</td><td>Sep 22</td><td>Dec 22</td><td>94%</td><td class="up">↑ +14pts</td></tr>
+          <tr><td>Q. Mbeki</td><td>EMEA</td><td>Nov 17</td><td>Feb 17</td><td>51%</td><td class="neu">→ +1pt</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
@@ -467,30 +571,70 @@ const DIRECTORS_BY_SD = {
   'bad-bunny': ['rosalia', 'little-simz', 'aroha-ngata']
 };
 const TARGET_PIPELINE_COVERAGE = 4.0;
+const ARR_TOTAL_BASE = 214;
+const EARR_TOTAL_BASE = 38;
+const ATTAINMENT_TOTAL_BASE = 63;
+const COVERAGE_TOTAL_BASE = 3.1;
+const DRIFT_BASE_DATE = new Date('2026-01-09');
+const DEFAULT_C1_LABELS = ['AMER', 'EMEA', 'APJ', 'LATAM'];
+const DEFAULT_C1_ACTUALS = [88, 61, 38, 27];
+const DEFAULT_C1_PLAN = [104, 68, 45, 30];
 
 const PEOPLE = {
-  all: { name: 'All leaders', subtitle: 'Sales leadership · FY27 Q2 · As of Apr 9, 2026', region: null, metric: 'arr', arr: '$214M', earr: '$38M', attainment: '73%', coverage: '3.1×' },
-  'brittany-howard': { name: 'Brittany Howard', subtitle: 'Sales leadership · FY27 Q2 · Brittany Howard (Enterprise SD) · As of Apr 9, 2026', region: 'AMER', metric: 'arr', arr: '$118M', earr: '$38M', attainment: '76%', coverage: '3.4×' },
-  'howlin-jackson': { name: 'Howlin Jackson', subtitle: 'Sales leadership · FY27 Q2 · Howlin Jackson (Digital Sales SD) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$8M', earr: '$2.4M', attainment: '66%', coverage: '4.1×' },
-  'john-mayer': { name: 'John Mayer', subtitle: 'Sales leadership · FY27 Q2 · John Mayer (Mid-Market SD) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$61M', earr: '$18M', attainment: '71%', coverage: '3.0×' },
-  'daisy-jones': { name: 'Daisy Jones', subtitle: 'Sales leadership · FY27 Q2 · Daisy Jones (SMB SD) · As of Apr 9, 2026', region: 'AMER', metric: 'arr', arr: '$22M', earr: '$7M', attainment: '69%', coverage: '2.8×' },
-  'bad-bunny': { name: 'Bad Bunny', subtitle: 'Sales leadership · FY27 Q2 · Bad Bunny (Sales Development SD) · As of Apr 9, 2026', region: null, metric: 'sql', sqls: '261', attainment: '—', coverage: '—' },
-  'taylor-hawkins': { name: 'Taylor Hawkins', subtitle: 'Sales leadership · FY27 Q2 · Taylor Hawkins (Enterprise AMER) · As of Apr 9, 2026', region: 'AMER', metric: 'arr', arr: '$72M', earr: '$24M', attainment: '81%', coverage: '3.8×' },
-  'neko-case': { name: 'Neko Case', subtitle: 'Sales leadership · FY27 Q2 · Neko Case (Enterprise EMEA) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$38M', earr: '$12M', attainment: '68%', coverage: '2.9×' },
-  'omar-apollo': { name: 'Omar Apollo', subtitle: 'Sales leadership · FY27 Q2 · Omar Apollo (Enterprise APAC) · As of Apr 9, 2026', region: 'APAC', metric: 'arr', arr: '$8M', earr: '$2M', attainment: '59%', coverage: '2.1×' },
-  'st-vincent': { name: 'St. Vincent', subtitle: 'Sales leadership · FY27 Q2 · St. Vincent (Digital Sales AMER) · As of Apr 9, 2026', region: 'AMER', metric: 'arr', arr: '$4.8M', earr: '$1.6M', attainment: '69%', coverage: '4.4×' },
-  'tems': { name: 'Tems', subtitle: 'Sales leadership · FY27 Q2 · Tems (Digital Sales EMEA) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$2.4M', earr: '$0.8M', attainment: '61%', coverage: '3.8×' },
-  'rina-sawayama': { name: 'Rina Sawayama', subtitle: 'Sales leadership · FY27 Q2 · Rina Sawayama (Digital Sales APAC) · As of Apr 9, 2026', region: 'APAC', metric: 'arr', arr: '$0.8M', earr: '$0.2M', attainment: '52%', coverage: '—' },
-  'sharon-van-etten': { name: 'Sharon Van Etten', subtitle: 'Sales leadership · FY27 Q2 · Sharon Van Etten (Mid-Market AMER) · As of Apr 9, 2026', region: 'AMER', metric: 'arr', arr: '$36M', earr: '$12M', attainment: '74%', coverage: '3.3×' },
-  'hozier': { name: 'Hozier', subtitle: 'Sales leadership · FY27 Q2 · Hozier (Mid-Market EMEA) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$18M', earr: '$6M', attainment: '65%', coverage: '2.7×' },
-  'mitski': { name: 'Mitski', subtitle: 'Sales leadership · FY27 Q2 · Mitski (Mid-Market APAC) · As of Apr 9, 2026', region: 'APAC', metric: 'arr', arr: '$7M', earr: '$2M', attainment: '61%', coverage: '—' },
-  'phoebe-bridgers': { name: 'Phoebe Bridgers', subtitle: 'Sales leadership · FY27 Q2 · Phoebe Bridgers (SMB AMER) · As of Apr 9, 2026', region: 'AMER', metric: 'arr', arr: '$13M', earr: '$4M', attainment: '72%', coverage: '—' },
-  'james-blake': { name: 'James Blake', subtitle: 'Sales leadership · FY27 Q2 · James Blake (SMB EMEA) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$7M', earr: '$2M', attainment: '64%', coverage: '—' },
-  'weyes-blood': { name: 'Weyes Blood', subtitle: 'Sales leadership · FY27 Q2 · Weyes Blood (SMB APAC) · As of Apr 9, 2026', region: 'APAC', metric: 'arr', arr: '$2M', earr: '$0.6M', attainment: '58%', coverage: '—' },
-  'rosalia': { name: 'Rosalía', subtitle: 'Sales leadership · FY27 Q2 · Rosalía (Sales Dev AMER) · As of Apr 9, 2026', region: 'AMER', metric: 'sql', sqls: '142', attainment: '—', coverage: '—' },
-  'little-simz': { name: 'Little Simz', subtitle: 'Sales leadership · FY27 Q2 · Little Simz (Sales Dev EMEA) · As of Apr 9, 2026', region: 'EMEA', metric: 'sql', sqls: '88', attainment: '—', coverage: '—' },
-  'aroha-ngata': { name: 'Aroha Ngata', subtitle: 'Sales leadership · FY27 Q2 · Aroha Ngata (Sales Dev APAC) · As of Apr 9, 2026', region: 'APAC', metric: 'sql', sqls: '31', attainment: '—', coverage: '—' }
+  all: { name: 'All leaders', subtitle: 'Sales leadership · FY26 Q4 · As of Apr 9, 2026', region: null, metric: 'arr', arr: '$214M', earr: '$38M', attainment: '63%', coverage: '3.1×' },
+  'brittany-howard': { name: 'Brittany Howard', subtitle: 'Sales leadership · FY26 Q4 · Brittany Howard (Enterprise SD) · As of Apr 9, 2026', region: 'AMER', metric: 'arr', arr: '$118M', earr: '$38M', attainment: '76%', coverage: '3.4×' },
+  'howlin-jackson': { name: 'Howlin Jackson', subtitle: 'Sales leadership · FY26 Q4 · Howlin Jackson (Digital Sales SD) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$8M', earr: '$2.4M', attainment: '66%', coverage: '4.1×' },
+  'john-mayer': { name: 'John Mayer', subtitle: 'Sales leadership · FY26 Q4 · John Mayer (Mid-Market SD) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$61M', earr: '$18M', attainment: '71%', coverage: '3.0×' },
+  'daisy-jones': { name: 'Daisy Jones', subtitle: 'Sales leadership · FY26 Q4 · Daisy Jones (SMB SD) · As of Apr 9, 2026', region: 'AMER', metric: 'arr', arr: '$22M', earr: '$7M', attainment: '69%', coverage: '2.8×' },
+  'bad-bunny': { name: 'Bad Bunny', subtitle: 'Sales leadership · FY26 Q4 · Bad Bunny (Sales Development SD) · As of Apr 9, 2026', region: null, metric: 'sql', sqls: '261', attainment: '—', coverage: '—' },
+  'taylor-hawkins': { name: 'Taylor Hawkins', subtitle: 'Sales leadership · FY26 Q4 · Taylor Hawkins (Enterprise AMER) · As of Apr 9, 2026', region: 'AMER', metric: 'arr', arr: '$72M', earr: '$24M', attainment: '81%', coverage: '3.8×' },
+  'neko-case': { name: 'Neko Case', subtitle: 'Sales leadership · FY26 Q4 · Neko Case (Enterprise EMEA) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$38M', earr: '$12M', attainment: '68%', coverage: '2.9×' },
+  'omar-apollo': { name: 'Omar Apollo', subtitle: 'Sales leadership · FY26 Q4 · Omar Apollo (Enterprise APAC) · As of Apr 9, 2026', region: 'APAC', metric: 'arr', arr: '$8M', earr: '$2M', attainment: '59%', coverage: '2.1×' },
+  'st-vincent': { name: 'St. Vincent', subtitle: 'Sales leadership · FY26 Q4 · St. Vincent (Digital Sales AMER) · As of Apr 9, 2026', region: 'AMER', metric: 'arr', arr: '$4.8M', earr: '$1.6M', attainment: '69%', coverage: '4.4×' },
+  'tems': { name: 'Tems', subtitle: 'Sales leadership · FY26 Q4 · Tems (Digital Sales EMEA) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$2.4M', earr: '$0.8M', attainment: '61%', coverage: '3.8×' },
+  'rina-sawayama': { name: 'Rina Sawayama', subtitle: 'Sales leadership · FY26 Q4 · Rina Sawayama (Digital Sales APAC) · As of Apr 9, 2026', region: 'APAC', metric: 'arr', arr: '$0.8M', earr: '$0.2M', attainment: '52%', coverage: '—' },
+  'sharon-van-etten': { name: 'Sharon Van Etten', subtitle: 'Sales leadership · FY26 Q4 · Sharon Van Etten (Mid-Market AMER) · As of Apr 9, 2026', region: 'AMER', metric: 'arr', arr: '$36M', earr: '$12M', attainment: '74%', coverage: '3.3×' },
+  'hozier': { name: 'Hozier', subtitle: 'Sales leadership · FY26 Q4 · Hozier (Mid-Market EMEA) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$18M', earr: '$6M', attainment: '65%', coverage: '2.7×' },
+  'mitski': { name: 'Mitski', subtitle: 'Sales leadership · FY26 Q4 · Mitski (Mid-Market APAC) · As of Apr 9, 2026', region: 'APAC', metric: 'arr', arr: '$7M', earr: '$2M', attainment: '61%', coverage: '—' },
+  'phoebe-bridgers': { name: 'Phoebe Bridgers', subtitle: 'Sales leadership · FY26 Q4 · Phoebe Bridgers (SMB AMER) · As of Apr 9, 2026', region: 'AMER', metric: 'arr', arr: '$13M', earr: '$4M', attainment: '72%', coverage: '—' },
+  'james-blake': { name: 'James Blake', subtitle: 'Sales leadership · FY26 Q4 · James Blake (SMB EMEA) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$7M', earr: '$2M', attainment: '64%', coverage: '—' },
+  'weyes-blood': { name: 'Weyes Blood', subtitle: 'Sales leadership · FY26 Q4 · Weyes Blood (SMB APAC) · As of Apr 9, 2026', region: 'APAC', metric: 'arr', arr: '$2M', earr: '$0.6M', attainment: '58%', coverage: '—' },
+  'rosalia': { name: 'Rosalía', subtitle: 'Sales leadership · FY26 Q4 · Rosalía (Sales Dev AMER) · As of Apr 9, 2026', region: 'AMER', metric: 'sql', sqls: '142', attainment: '—', coverage: '—' },
+  'little-simz': { name: 'Little Simz', subtitle: 'Sales leadership · FY26 Q4 · Little Simz (Sales Dev EMEA) · As of Apr 9, 2026', region: 'EMEA', metric: 'sql', sqls: '88', attainment: '—', coverage: '—' },
+  'aroha-ngata': { name: 'Aroha Ngata', subtitle: 'Sales leadership · FY26 Q4 · Aroha Ngata (Sales Dev APAC) · As of Apr 9, 2026', region: 'APAC', metric: 'sql', sqls: '31', attainment: '—', coverage: '—' }
 };
+
+function parseMetricNumber(value) {
+  if (!value || typeof value !== 'string') return NaN;
+  return parseFloat(value.replace(/[^0-9.-]/g, ''));
+}
+
+function getCurrentSelection() {
+  const sdSelection = document.getElementById('sdFilter').value;
+  const dirSelection = document.getElementById('dirFilter').value;
+  const key = dirSelection !== 'all' ? dirSelection : sdSelection;
+  return {
+    sdSelection,
+    dirSelection,
+    key,
+    person: PEOPLE[key] || PEOPLE.all
+  };
+}
+
+function applyDateDrift() {
+  const today = new Date();
+  const daysSinceBase = Math.max(0, Math.floor((today - DRIFT_BASE_DATE) / 86400000));
+
+  const arr = ARR_TOTAL_BASE + (daysSinceBase * 0.18);
+  const earr = EARR_TOTAL_BASE + (daysSinceBase * 0.04);
+  const attainment = Math.min(99, ATTAINMENT_TOTAL_BASE + (daysSinceBase * 0.11));
+  const coverage = Math.max(2.2, COVERAGE_TOTAL_BASE - (daysSinceBase * 0.002));
+
+  document.getElementById('kpi1Value').textContent = `$${arr.toFixed(1)}M`;
+  document.getElementById('kpi2Value').textContent = `$${earr.toFixed(1)}M`;
+  document.getElementById('kpi3Value').textContent = `${Math.round(attainment)}%`;
+  document.getElementById('kpi4Value').innerHTML = `${coverage.toFixed(1)}× <span style="color:#9a6700;cursor:pointer;font-size:10px;margin-left:4px" title="See A5 Actions" onclick="switchTab('a5', document.querySelectorAll('.nav button')[4])">⚠</span>`;
+}
 
 function populateDirectorFilter(sdKey) {
   const dirFilter = document.getElementById('dirFilter');
@@ -516,7 +660,7 @@ function updateKpis(person) {
   const isSql = person.metric === 'sql';
   document.getElementById('kpi1Label').textContent = isSql ? 'SQLs' : 'ARR (total)';
   document.getElementById('kpi1Value').textContent = isSql ? person.sqls : person.arr;
-  document.getElementById('kpi1Sub').textContent = isSql ? 'Sales development pipeline' : 'FY27 Q2 book';
+  document.getElementById('kpi1Sub').textContent = isSql ? 'Sales development pipeline' : 'FY26 Q4 book';
   document.getElementById('kpi1Sub').className = 'sub neu';
 
   document.getElementById('kpi2Label').textContent = isSql ? 'SDR attainment' : 'eARR (expansion)';
@@ -524,13 +668,13 @@ function updateKpis(person) {
   document.getElementById('kpi2Sub').textContent = isSql ? 'Coverage not applicable' : 'Expansion trajectory';
   document.getElementById('kpi2Sub').className = isSql ? 'sub neu' : 'sub up';
 
-  document.getElementById('kpi3Label').textContent = 'Q2 attainment vs plan';
+  document.getElementById('kpi3Label').textContent = 'Q4 attainment vs plan';
   document.getElementById('kpi3Value').textContent = person.attainment;
   document.getElementById('kpi3Sub').textContent = 'Week 9 of 13';
   document.getElementById('kpi3Sub').className = 'sub neu';
 
   document.getElementById('kpi4Label').textContent = isSql ? 'SDR coverage signal' : 'Pipeline coverage';
-  document.getElementById('kpi4Value').textContent = person.coverage;
+  document.getElementById('kpi4Value').innerHTML = isSql ? person.coverage : `${person.coverage} <span style="color:#9a6700;cursor:pointer;font-size:10px;margin-left:4px" title="See A5 Actions" onclick="switchTab('a5', document.querySelectorAll('.nav button')[4])">⚠</span>`;
   document.getElementById('kpi4Sub').textContent = isSql ? 'SQL pacing by region' : `Target ${TARGET_PIPELINE_COVERAGE.toFixed(1)}×`;
   const hasCoverage = person.coverage !== '—' && !isSql;
   const meetsTarget = hasCoverage && parseFloat(person.coverage) >= TARGET_PIPELINE_COVERAGE;
@@ -538,19 +682,18 @@ function updateKpis(person) {
 }
 
 function applySelectionContext() {
-  const sdSelection = document.getElementById('sdFilter').value;
-  const dirSelection = document.getElementById('dirFilter').value;
-  const key = dirSelection !== 'all' ? dirSelection : sdSelection;
-  const person = PEOPLE[key] || PEOPLE.all;
+  const { sdSelection, dirSelection, person } = getCurrentSelection();
 
   document.getElementById('headerSubtitle').textContent = person.subtitle;
   updateKpis(person);
+  if (sdSelection === 'all' && dirSelection === 'all') applyDateDrift();
 
   const mappedRegion = person.region === 'APAC' ? 'APJ' : person.region;
   document.querySelectorAll('.region-row').forEach((row) => {
     row.classList.remove('row-highlight');
     if (mappedRegion && row.dataset.region === mappedRegion) row.classList.add('row-highlight');
   });
+  renderCharts();
 }
 
 function destroyAndRenderChart(chartId, config) {
@@ -566,15 +709,45 @@ function destroyAndRenderChart(chartId, config) {
 
 function renderCharts() {
   const active = document.querySelector('.section.active').id;
+  const { dirSelection, person } = getCurrentSelection();
+  const directorSelected = dirSelection !== 'all';
+  const selectedArr = parseMetricNumber(person.arr);
 
   if (active === 'a1') {
+    let c1Labels = DEFAULT_C1_LABELS.slice();
+    let c1Actuals = DEFAULT_C1_ACTUALS.slice();
+    let c1Plan = DEFAULT_C1_PLAN.slice();
+    if (directorSelected && person.region) {
+      const mapped = person.region === 'APAC' ? 'APJ' : person.region;
+      const regionIndex = DEFAULT_C1_LABELS.indexOf(mapped);
+      if (regionIndex >= 0) {
+        c1Labels = [DEFAULT_C1_LABELS[regionIndex]];
+        c1Plan = [DEFAULT_C1_PLAN[regionIndex]];
+        c1Actuals = [Number.isFinite(selectedArr) ? selectedArr : DEFAULT_C1_ACTUALS[regionIndex]];
+      }
+    }
+
+    const arrShare = directorSelected && Number.isFinite(selectedArr) ? Math.max(0, selectedArr / ARR_TOTAL_BASE) : 1;
+    const q2NewLogo = directorSelected ? Number((59 * arrShare).toFixed(1)) : 59;
+    const q2Expansion = directorSelected ? Number((38 * arrShare).toFixed(1)) : 38;
+
+    let winRateShift = 0;
+    if (directorSelected) {
+      const attainment = parseMetricNumber(person.attainment);
+      if (Number.isFinite(attainment)) {
+        if (attainment < 70) winRateShift = -4;
+        if (attainment >= 80) winRateShift = 3;
+      }
+    }
+    const winRateSeries = [28, 29, 31, 30, 33, 34].map((value) => value + winRateShift);
+
     destroyAndRenderChart('c1', {
       type: 'bar',
       data: {
-        labels: ['AMER','EMEA','APJ','LATAM'],
+        labels: c1Labels,
         datasets: [
-          { label: 'Actuals', data: [88,61,38,27], backgroundColor: '#0969da', borderRadius: 3 },
-          { label: 'Plan', data: [104,68,45,30], backgroundColor: '#D3D1C7', borderRadius: 3 }
+          { label: 'Actuals', data: c1Actuals, backgroundColor: '#0969da', borderRadius: 3 },
+          { label: 'Plan', data: c1Plan, backgroundColor: '#D3D1C7', borderRadius: 3 }
         ]
       },
       options: {
@@ -591,8 +764,8 @@ function renderCharts() {
       data: {
         labels: ['Q1','Q2'],
         datasets: [
-          { label: 'New logo', data: [48,59], backgroundColor: '#0969da', borderRadius: 3 },
-          { label: 'Expansion', data: [22,38], backgroundColor: '#1a7f37', borderRadius: 3 }
+          { label: 'New logo', data: [48, q2NewLogo], backgroundColor: '#0969da', borderRadius: 3 },
+          { label: 'Expansion', data: [22, q2Expansion], backgroundColor: '#1a7f37', borderRadius: 3 }
         ]
       },
       options: {
@@ -609,7 +782,7 @@ function renderCharts() {
       data: {
         labels: ['Nov','Dec','Jan','Feb','Mar','Apr'],
         datasets: [
-          { label: 'Win rate %', data: [28,29,31,30,33,34], borderColor: '#0969da', borderWidth: 2, pointRadius: 3, tension: 0.3, yAxisID: 'y' },
+          { label: 'Win rate %', data: winRateSeries, borderColor: '#0969da', borderWidth: 2, pointRadius: 3, tension: 0.3, yAxisID: 'y' },
           { label: 'Days to close', data: [47,45,44,42,40,39], borderColor: '#D85A30', borderWidth: 2, borderDash: [4,3], pointRadius: 3, tension: 0.3, yAxisID: 'y2' }
         ]
       },
@@ -626,6 +799,10 @@ function renderCharts() {
   }
 
   if (active === 'a2') {
+    let customerHealth = [58, 24, 11, 7];
+    if (directorSelected && person.region === 'APAC') customerHealth = [48, 31, 14, 7];
+    if (directorSelected && person.region === 'EMEA') customerHealth = [54, 26, 12, 8];
+
     destroyAndRenderChart('c4', {
       type: 'bar',
       data: {
@@ -648,7 +825,7 @@ function renderCharts() {
       type: 'doughnut',
       data: {
         labels: ['Healthy','At risk','Red','Unknown'],
-        datasets: [{ data: [58,24,11,7], backgroundColor: ['#1a7f37','#9a6700','#cf222e','#8c959f'], borderWidth: 0 }]
+        datasets: [{ data: customerHealth, backgroundColor: ['#1a7f37','#9a6700','#cf222e','#8c959f'], borderWidth: 0 }]
       },
       options: {
         responsive: true, maintainAspectRatio: false, cutout: '65%',
@@ -669,7 +846,6 @@ document.getElementById('exportBtn').addEventListener('click', () => {
 
 populateDirectorFilter('all');
 applySelectionContext();
-renderCharts();
 </script>
 </body>
 </html>
