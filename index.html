@@ -466,6 +466,7 @@ const DIRECTORS_BY_SD = {
   'daisy-jones': ['phoebe-bridgers', 'james-blake', 'weyes-blood'],
   'bad-bunny': ['rosalia', 'little-simz', 'aroha-ngata']
 };
+const TARGET_PIPELINE_COVERAGE = 4.0;
 
 const PEOPLE = {
   all: { name: 'All leaders', subtitle: 'Sales leadership · FY27 Q2 · As of Apr 9, 2026', region: null, metric: 'arr', arr: '$214M', earr: '$38M', attainment: '73%', coverage: '3.1×' },
@@ -530,8 +531,8 @@ function updateKpis(person) {
 
   document.getElementById('kpi4Label').textContent = isSql ? 'SDR coverage signal' : 'Pipeline coverage';
   document.getElementById('kpi4Value').textContent = person.coverage;
-  document.getElementById('kpi4Sub').textContent = isSql ? 'SQL pacing by region' : 'Target 4.0×';
-  document.getElementById('kpi4Sub').className = person.coverage !== '—' && !isSql && parseFloat(person.coverage) >= 4 ? 'sub up' : 'sub dn';
+  document.getElementById('kpi4Sub').textContent = isSql ? 'SQL pacing by region' : `Target ${TARGET_PIPELINE_COVERAGE.toFixed(1)}×`;
+  document.getElementById('kpi4Sub').className = person.coverage !== '—' && !isSql && parseFloat(person.coverage) >= TARGET_PIPELINE_COVERAGE ? 'sub up' : 'sub dn';
 }
 
 function applySelectionContext() {
