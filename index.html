@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Revenue Hub · Sales Leadership Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2324292f'/%3E%3Cpath d='M32 15c-10.5 0-19 8.5-19 19 0 8.4 5.4 15.5 12.9 18.1 1 .2 1.3-.4 1.3-.9v-3.3c-5.2 1.1-6.3-2.2-6.3-2.2-.8-2.1-2.1-2.7-2.1-2.7-1.8-1.2.1-1.2.1-1.2 2 .1 3.1 2 3.1 2 1.8 3 4.7 2.1 5.9 1.6.2-1.3.7-2.1 1.2-2.6-4.2-.5-8.7-2.1-8.7-9.4 0-2.1.7-3.8 2-5.2-.2-.5-.9-2.4.2-5 0 0 1.6-.5 5.3 2a18.7 18.7 0 0 1 9.6 0c3.7-2.5 5.3-2 5.3-2 1.1 2.6.4 4.5.2 5 1.3 1.4 2 3.1 2 5.2 0 7.3-4.5 8.9-8.7 9.4.7.6 1.3 1.8 1.3 3.6v5.3c0 .5.4 1.1 1.3.9A19 19 0 0 0 51 34c0-10.5-8.5-19-19-19Z' fill='white'/%3E%3C/svg%3E" />
   <style>
     :root {
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -12,32 +13,44 @@
       --color-border-tertiary: #d0d7de;
       --color-text-primary: #1f2328;
       --color-text-secondary: #656d76;
+      --gh-blue: #0969da;
+      --gh-green: #1a7f37;
+      --gh-yellow: #9a6700;
+      --gh-red: #cf222e;
+      --gh-header: #24292f;
       --border-radius-md: 6px;
       --border-radius-lg: 8px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:var(--font-sans);background:#ffffff;padding:24px 32px;max-width:1100px;margin:0 auto}
-    .db{padding:1rem 0;width:100%}
+    body{font-family:var(--font-sans);background:var(--color-background-secondary);padding:24px 32px;max-width:1160px;margin:0 auto}
+    .db{padding:1rem;width:100%;background:var(--color-background-primary);border:1px solid var(--color-border-tertiary);border-top:4px solid var(--gh-header);border-radius:12px}
+    .header-wrap{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem;gap:12px}
+    .brand-title{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:500;color:var(--color-text-primary)}
+    .brand-title svg{fill:var(--gh-header)}
+    .header-subtitle{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+    .director-select{font-size:11px;font-weight:500;color:var(--color-text-primary);background:var(--color-background-primary);border:1px solid var(--color-border-tertiary);border-radius:6px;padding:3px 8px;height:24px}
+    .purpose{font-size:11px;color:var(--color-text-secondary);margin-bottom:10px}
     .nav{display:flex;gap:4px;margin-bottom:1.5rem;border-bottom:0.5px solid var(--color-border-tertiary);padding-bottom:0}
     .nav button{font-size:12px;font-weight:500;padding:6px 12px;border:none;background:transparent;cursor:pointer;color:var(--color-text-secondary);border-bottom:2px solid transparent;margin-bottom:-0.5px;border-radius:0;transition:color .15s}
-    .nav button.active{color:var(--color-text-primary);border-bottom:2px solid #3266ad}
+    .nav button.active{color:var(--color-text-primary);border-bottom:2px solid var(--gh-blue)}
     .nav button:hover:not(.active){color:var(--color-text-primary)}
     .section{display:none}.section.active{display:block}
+    .grid-5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:1.25rem}
     .grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1.25rem}
     .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1.25rem}
     .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:1.25rem}
-    .mcard{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:14px 16px}
+    .mcard{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:14px 16px}
     .mcard .lbl{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;letter-spacing:.02em}
     .mcard .val{font-size:22px;font-weight:500;color:var(--color-text-primary);line-height:1}
     .mcard .sub{font-size:11px;margin-top:4px}
-    .up{color:#3a8c52}.dn{color:#c94040}.neu{color:var(--color-text-secondary)}
+    .up{color:var(--gh-green)}.dn{color:var(--gh-red)}.neu{color:var(--color-text-secondary)}
     .card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px}
     .card h3{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:12px}
     .pill{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:99px;margin-left:6px}
-    .pill-lead{background:#E6F1FB;color:#0C447C}.pill-lag{background:#EAF3DE;color:#27500A}.pill-both{background:#FAEEDA;color:#633806}
+    .pill-lead{background:#ddf4ff;color:#0550ae}.pill-lag{background:#dafbe1;color:#116329}.pill-both{background:#fff8c5;color:#9a6700}
     .badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:var(--border-radius-md)}
-    .badge-g{background:#EAF3DE;color:#27500A}.badge-y{background:#FAEEDA;color:#633806}.badge-r{background:#FCEBEB;color:#791F1F}
-    .badge-b{background:#E6F1FB;color:#0C447C}
+    .badge-g{background:#dafbe1;color:#116329}.badge-y{background:#fff8c5;color:#9a6700}.badge-r{background:#ffebe9;color:#cf222e}
+    .badge-b{background:#ddf4ff;color:#0550ae}
     .tbl{width:100%;border-collapse:collapse;font-size:12px}
     .tbl th{font-size:10px;font-weight:500;color:var(--color-text-secondary);text-align:left;padding:0 0 6px;border-bottom:0.5px solid var(--color-border-tertiary)}
     .tbl td{padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);vertical-align:middle}
@@ -52,7 +65,12 @@
     .bet-card p{font-size:11px;color:var(--color-text-secondary);margin-bottom:10px}
     .cad-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px;margin-bottom:8px}
     .cad-card .cad-title{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px}
+    .cad-purpose{font-size:11px;color:var(--color-text-secondary);font-style:italic;margin:0 0 8px}
     .tag{font-size:10px;font-weight:500;padding:2px 7px;border-radius:99px;display:inline-block;margin:2px 3px 2px 0}
+    .row-highlight td{font-weight:600}
+    @media (max-width: 980px){
+      .grid-5,.grid-4,.grid-3,.grid-2{grid-template-columns:1fr}
+    }
   </style>
 </head>
 <body>
@@ -60,13 +78,24 @@
 <h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Revenue Hub: Sales Leadership Dashboard with four sections covering baseline performance, opportunity gaps, strategic bets, and operating discipline</h2>
 
 <div class="db">
-<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1rem">
+<div class="header-wrap">
   <div>
-    <div style="font-size:18px;font-weight:500;color:var(--color-text-primary)">Revenue Hub</div>
-    <div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">Sales leadership · FY27 Q2 · As of Apr 9, 2026</div>
+    <div class="brand-title">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52 0-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      <span>GitHub Revenue Hub</span>
+    </div>
+    <div id="headerSubtitle" class="header-subtitle">Sales leadership · FY27 Q2 · As of Apr 9, 2026</div>
   </div>
   <div style="display:flex;gap:8px;align-items:center">
     <span class="badge badge-y">Q2 In Flight</span>
+    <select id="directorFilter" class="director-select" aria-label="Sales Director filter">
+      <option value="all">All directors</option>
+      <option value="sarah">Sarah Chen – AMER Enterprise</option>
+      <option value="marcus">Marcus Reid – AMER Mid-Market</option>
+      <option value="priya">Priya Nair – EMEA</option>
+      <option value="james">James Okafor – APJ</option>
+      <option value="lucia">Lucia Vargas – LATAM</option>
+    </select>
   </div>
 </div>
 
@@ -78,14 +107,16 @@
 </div>
 
 <div id="a1" class="section active">
-  <div class="grid-4">
+  <div class="purpose">Provide a consistent, shared baseline view of revenue and pipeline so leadership starts from the same facts before diagnosing issues or making tradeoffs.</div>
+  <div class="grid-5">
     <div class="mcard"><div class="lbl">ARR (total)</div><div class="val">$214M</div><div class="sub up">↑ 22% YoY</div></div>
     <div class="mcard"><div class="lbl">eARR (expansion)</div><div class="val">$38M</div><div class="sub up">↑ 31% YoY</div></div>
     <div class="mcard"><div class="lbl">Q2 attainment vs plan</div><div class="val">73%</div><div class="sub neu">Week 9 of 13</div></div>
     <div class="mcard"><div class="lbl">Pipeline coverage</div><div class="val">3.1×</div><div class="sub dn">↓ Target 4.0×</div></div>
+    <div class="mcard"><div class="lbl">Partner signal <span class="pill pill-lag">Lagging</span></div><div class="val">112 / $8.2M</div><div class="sub neu">Partner-reg deals / Service bookings</div></div>
   </div>
 
-  <div class="grid-2">
+  <div class="grid-3">
     <div class="card">
       <h3>Actuals vs. plan by region <span class="pill pill-lag">Lagging</span></h3>
       <div style="position:relative;height:200px"><canvas id="c1" role="img" aria-label="Bar chart comparing actuals vs plan by region">AMER: $88M/$104M, EMEA: $61M/$68M, APJ: $38M/$45M, LATAM: $27M/$30M</canvas></div>
@@ -93,6 +124,18 @@
     <div class="card">
       <h3>ARR by motion <span class="pill pill-lag">Lagging</span></h3>
       <div style="position:relative;height:200px"><canvas id="c2" role="img" aria-label="Bar chart of ARR split by new logo vs expansion over Q1 Q2">Q1 new logo $48M expansion $22M, Q2 new logo $59M expansion $38M</canvas></div>
+    </div>
+    <div class="card">
+      <h3>ARR by segment <span class="pill pill-lag">Lagging</span></h3>
+      <table class="tbl">
+        <thead><tr><th>Segment</th><th>ARR</th><th>Mix</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>Enterprise</td><td>$118M</td><td>55%</td><td><div class="bar-bg"><div class="bar-fill" style="width:55%;background:#0969da"></div></div></td></tr>
+          <tr><td>Mid-Market</td><td>$61M</td><td>29%</td><td><div class="bar-bg"><div class="bar-fill" style="width:29%;background:#218bff"></div></div></td></tr>
+          <tr><td>SMB</td><td>$22M</td><td>10%</td><td><div class="bar-bg"><div class="bar-fill" style="width:10%;background:#54aeff"></div></div></td></tr>
+          <tr><td>Public Sector</td><td>$13M</td><td>6%</td><td><div class="bar-bg"><div class="bar-fill" style="width:6%;background:#96d0ff"></div></div></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -114,7 +157,7 @@
       <h3>Win rate &amp; deal velocity <span class="pill pill-both">Leading / Lagging</span></h3>
       <div style="position:relative;height:180px"><canvas id="c3" role="img" aria-label="Line chart of win rate and average deal velocity over last 6 months">Win rate trend from 28% to 34%, velocity trend 47 to 39 days</canvas></div>
       <div style="display:flex;gap:16px;margin-top:8px;font-size:11px;color:var(--color-text-secondary)">
-        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:3px;background:#3266ad;display:inline-block"></span>Win rate %</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:3px;background:#0969da;display:inline-block"></span>Win rate %</span>
         <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:3px;background:#D85A30;display:inline-block;border-top:2px dashed #D85A30;height:0"></span>Avg days to close</span>
       </div>
     </div>
@@ -124,17 +167,32 @@
     <h3>Activity pacing indicators <span class="pill pill-lead">Leading</span></h3>
     <table class="tbl">
       <thead><tr><th>Region</th><th>Meetings / week</th><th>vs. target</th><th>Calls / week</th><th>vs. target</th><th>Status</th></tr></thead>
+      <tbody id="activityPacingBody">
+        <tr class="region-row" data-region="AMER"><td>AMER</td><td>487</td><td class="up">+4%</td><td>1,204</td><td class="up">+2%</td><td><span class="badge badge-g">On track</span></td></tr>
+        <tr class="region-row" data-region="EMEA"><td>EMEA</td><td>298</td><td class="dn">−12%</td><td>741</td><td class="dn">−9%</td><td><span class="badge badge-y">At risk</span></td></tr>
+        <tr class="region-row" data-region="APJ"><td>APJ</td><td>173</td><td class="dn">−18%</td><td>388</td><td class="dn">−22%</td><td><span class="badge badge-r">Behind</span></td></tr>
+        <tr class="region-row" data-region="LATAM"><td>LATAM</td><td>114</td><td class="up">+1%</td><td>293</td><td class="neu">0%</td><td><span class="badge badge-g">On track</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-bottom:1rem">
+    <h3>ARR by product <span class="pill pill-lag">Lagging</span></h3>
+    <table class="tbl">
+      <thead><tr><th>Product</th><th>ARR</th><th>YoY</th><th></th></tr></thead>
       <tbody>
-        <tr><td>AMER</td><td>487</td><td class="up">+4%</td><td>1,204</td><td class="up">+2%</td><td><span class="badge badge-g">On track</span></td></tr>
-        <tr><td>EMEA</td><td>298</td><td class="dn">−12%</td><td>741</td><td class="dn">−9%</td><td><span class="badge badge-y">At risk</span></td></tr>
-        <tr><td>APJ</td><td>173</td><td class="dn">−18%</td><td>388</td><td class="dn">−22%</td><td><span class="badge badge-r">Behind</span></td></tr>
-        <tr><td>LATAM</td><td>114</td><td class="up">+1%</td><td>293</td><td class="neu">0%</td><td><span class="badge badge-g">On track</span></td></tr>
+        <tr><td>GitHub Copilot</td><td>$74M</td><td><span class="badge badge-g">↑ 48%</span></td><td><div class="bar-bg"><div class="bar-fill" style="width:100%;background:#0969da"></div></div></td></tr>
+        <tr><td>GitHub Enterprise (GHE)</td><td>$49M</td><td><span class="badge badge-g">↑ 8%</span></td><td><div class="bar-bg"><div class="bar-fill" style="width:66%;background:#218bff"></div></div></td></tr>
+        <tr><td>GitHub Advanced Security (GHAS)</td><td>$41M</td><td><span class="badge badge-g">↑ 29%</span></td><td><div class="bar-bg"><div class="bar-fill" style="width:55%;background:#54aeff"></div></div></td></tr>
+        <tr><td>GitHub Actions</td><td>$38M</td><td><span class="badge badge-g">↑ 18%</span></td><td><div class="bar-bg"><div class="bar-fill" style="width:51%;background:#80ccff"></div></div></td></tr>
+        <tr><td>GitHub.com / Core</td><td>$12M</td><td><span class="badge badge-g">↑ 6%</span></td><td><div class="bar-bg"><div class="bar-fill" style="width:16%;background:#a5d6ff"></div></div></td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
 <div id="a2" class="section">
+  <div class="purpose">Surface mismatches between opportunity and execution that indicate where leadership attention or investment could unlock additional growth.</div>
   <div class="grid-3">
     <div class="mcard"><div class="lbl">TAM penetration (global)</div><div class="val">8.4%</div><div class="sub neu">$214M of $2.5B TAM</div></div>
     <div class="mcard"><div class="lbl">Quota capacity vs. headcount</div><div class="val">−14%</div><div class="sub dn">31 open roles vs. plan</div></div>
@@ -150,18 +208,18 @@
       <h3>Ramp-adjusted capacity <span class="pill pill-lead">Leading</span></h3>
       <table class="tbl">
         <thead><tr><th>Region</th><th>Quota cap.</th><th>Ramp adj.</th><th>Gap</th></tr></thead>
-        <tbody>
-          <tr><td>AMER</td><td>$108M</td><td>$97M</td><td class="dn">−$11M</td></tr>
-          <tr><td>EMEA</td><td>$72M</td><td>$58M</td><td class="dn">−$14M</td></tr>
-          <tr><td>APJ</td><td>$48M</td><td>$34M</td><td class="dn">−$14M</td></tr>
-          <tr><td>LATAM</td><td>$32M</td><td>$29M</td><td class="dn">−$3M</td></tr>
+        <tbody id="capacityBody">
+          <tr class="region-row" data-region="AMER"><td>AMER</td><td>$108M</td><td>$97M</td><td class="dn">−$11M</td></tr>
+          <tr class="region-row" data-region="EMEA"><td>EMEA</td><td>$72M</td><td>$58M</td><td class="dn">−$14M</td></tr>
+          <tr class="region-row" data-region="APJ"><td>APJ</td><td>$48M</td><td>$34M</td><td class="dn">−$14M</td></tr>
+          <tr class="region-row" data-region="LATAM"><td>LATAM</td><td>$32M</td><td>$29M</td><td class="dn">−$3M</td></tr>
         </tbody>
       </table>
       <div style="margin-top:12px;font-size:11px;color:var(--color-text-secondary)">Total effective gap: <span style="font-weight:500;color:var(--color-text-primary)">−$42M</span> vs. plan capacity</div>
     </div>
   </div>
 
-  <div class="grid-2">
+  <div class="grid-3">
     <div class="card">
       <h3>Renewal &amp; expansion ARR exposure <span class="pill pill-lead">Leading</span></h3>
       <table class="tbl">
@@ -177,16 +235,29 @@
       <h3>Customer scorecard summary <span class="pill pill-both">Leading / Lagging</span></h3>
       <div style="position:relative;height:160px"><canvas id="c5" role="img" aria-label="Donut chart of customer health distribution">Healthy 58%, At risk 24%, Red 11%, Unknown 7%</canvas></div>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;font-size:11px;color:var(--color-text-secondary)">
-        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#639922;display:inline-block"></span>Healthy 58%</span>
-        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#EF9F27;display:inline-block"></span>At risk 24%</span>
-        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#E24B4A;display:inline-block"></span>Red 11%</span>
-        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#B4B2A9;display:inline-block"></span>Unknown 7%</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#1a7f37;display:inline-block"></span>Healthy 58%</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#9a6700;display:inline-block"></span>At risk 24%</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#cf222e;display:inline-block"></span>Red 11%</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#8c959f;display:inline-block"></span>Unknown 7%</span>
       </div>
+    </div>
+    <div class="card">
+      <h3>Growth rate vs. pipeline coverage <span class="pill pill-both">Leading / Lagging</span></h3>
+      <table class="tbl">
+        <thead><tr><th>Region</th><th>Growth rate</th><th>Coverage</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>AMER</td><td class="up">24%</td><td>3.8×</td><td><span class="badge badge-y">Demand > capacity</span></td></tr>
+          <tr><td>EMEA</td><td class="up">18%</td><td>2.9×</td><td><span class="badge badge-r">Coverage risk</span></td></tr>
+          <tr><td>APJ</td><td class="up">31%</td><td>2.1×</td><td><span class="badge badge-r">High urgency</span></td></tr>
+          <tr><td>LATAM</td><td class="up">12%</td><td>3.4×</td><td><span class="badge badge-g">Monitor</span></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
 
 <div id="a3" class="section">
+  <div class="purpose">Close the loop between leadership priorities and outcomes early enough to course correct — not after the quarter is closed.</div>
   <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:1rem">FY27 growth levers — bet vs. outcome tracking. Updated weekly.</div>
 
   <div class="bet-card">
@@ -211,7 +282,19 @@
       <div class="mcard"><div class="lbl">Expansion MRR</div><div class="val">$4.1M</div><div class="sub up">↑ 27% MoM</div></div>
       <div class="mcard"><div class="lbl">Consumption ARR</div><div class="val">$31M</div><div class="sub up">↑ 19% QoQ</div></div>
       <div class="mcard"><div class="lbl">Usage → contract conv.</div><div class="val">22%</div><div class="sub up">↑ from 16%</div></div>
-      <div class="mcard"><div class="lbl">Top product driver</div><div class="val">Core API</div><div class="sub neu">61% of usage</div></div>
+      <div class="mcard"><div class="lbl">Top product by ARR</div><div class="val">GitHub Copilot</div><div class="sub neu">35% of product ARR mix</div></div>
+    </div>
+    <div style="margin-top:10px">
+      <table class="tbl">
+        <thead><tr><th>Consumption driver</th><th>ARR</th><th>YoY</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>GitHub Copilot</td><td>$74M</td><td><span class="badge badge-g">↑ 48%</span></td><td><div class="bar-bg"><div class="bar-fill" style="width:100%;background:#0969da"></div></div></td></tr>
+          <tr><td>GitHub Advanced Security (GHAS)</td><td>$41M</td><td><span class="badge badge-g">↑ 29%</span></td><td><div class="bar-bg"><div class="bar-fill" style="width:55%;background:#54aeff"></div></div></td></tr>
+          <tr><td>GitHub Actions</td><td>$38M</td><td><span class="badge badge-g">↑ 18%</span></td><td><div class="bar-bg"><div class="bar-fill" style="width:51%;background:#80ccff"></div></div></td></tr>
+          <tr><td>GitHub Enterprise (GHE)</td><td>$49M</td><td><span class="badge badge-g">↑ 8%</span></td><td><div class="bar-bg"><div class="bar-fill" style="width:66%;background:#218bff"></div></div></td></tr>
+          <tr><td>GitHub.com / Core</td><td>$12M</td><td><span class="badge badge-g">↑ 6%</span></td><td><div class="bar-bg"><div class="bar-fill" style="width:16%;background:#a5d6ff"></div></div></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -241,18 +324,19 @@
     </div>
   </div>
 </div>
-</div>
 
 <div id="a4" class="section">
+  <div class="purpose">Ensure Rev Hub reinforces leadership inspection rhythms, not just reporting.</div>
   <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:1rem">Signals anchoring leadership inspection cadences.</div>
 
   <div class="cad-card">
     <div class="cad-title">Weekly pipeline review</div>
+    <div class="cad-purpose">Inspect pipeline health and near-term risk before it impacts outcomes.</div>
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-      <span class="tag" style="background:#E6F1FB;color:#0C447C">Pipeline coverage 3.1× (target 4.0×)</span>
-      <span class="tag" style="background:#FCEBEB;color:#791F1F">APJ stage mix skewed early</span>
-      <span class="tag" style="background:#FAEEDA;color:#633806">EMEA near-term risk: 3 deals slipped</span>
-      <span class="tag" style="background:#EAF3DE;color:#27500A">AMER commit solid</span>
+      <span class="tag" style="background:#ddf4ff;color:#0550ae">Pipeline coverage 3.1× (target 4.0×)</span>
+      <span id="weeklyRegionTag" class="tag" style="background:#ffebe9;color:#cf222e">APJ stage mix skewed early</span>
+      <span class="tag" style="background:#fff8c5;color:#9a6700">EMEA near-term risk: 3 deals slipped</span>
+      <span class="tag" style="background:#dafbe1;color:#116329">AMER commit solid</span>
     </div>
     <div class="signal-row"><span style="color:var(--color-text-secondary);font-size:12px">Pipeline coverage vs. target, by region &amp; segment</span><span class="badge badge-r">Risk flag</span></div>
     <div class="signal-row"><span style="color:var(--color-text-secondary);font-size:12px">Stage mix: late-stage concentration check</span><span class="badge badge-y">Review</span></div>
@@ -261,10 +345,11 @@
 
   <div class="cad-card">
     <div class="cad-title">Monthly performance review</div>
+    <div class="cad-purpose">Assess actuals vs. plan and leading indicators across regions.</div>
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-      <span class="tag" style="background:#E6F1FB;color:#0C447C">Q2 YTD: 73% to plan</span>
-      <span class="tag" style="background:#FCEBEB;color:#791F1F">APJ activity pacing −18%</span>
-      <span class="tag" style="background:#EAF3DE;color:#27500A">Expansion ARR ahead</span>
+      <span class="tag" style="background:#ddf4ff;color:#0550ae">Q2 YTD: 73% to plan</span>
+      <span id="monthlyRegionTag" class="tag" style="background:#ffebe9;color:#cf222e">APJ activity pacing −18%</span>
+      <span class="tag" style="background:#dafbe1;color:#116329">Expansion ARR ahead</span>
     </div>
     <div class="signal-row"><span style="color:var(--color-text-secondary);font-size:12px">Actuals vs. plan, by region — April MBR view</span><span class="badge badge-y">Tracking</span></div>
     <div class="signal-row"><span style="color:var(--color-text-secondary);font-size:12px">Leading indicators by region: activity, coverage, velocity</span><span class="badge badge-b">View</span></div>
@@ -273,10 +358,11 @@
 
   <div class="cad-card" style="margin-bottom:0">
     <div class="cad-title">Quarterly strategy review</div>
+    <div class="cad-purpose">Evaluate bet vs. outcome trends and course correct entering next quarter.</div>
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-      <span class="tag" style="background:#EEEDFE;color:#3C3489">Consumption bet ahead</span>
-      <span class="tag" style="background:#FCEBEB;color:#791F1F">Partner bet behind plan</span>
-      <span class="tag" style="background:#FAEEDA;color:#633806">New logo pace needs course correction</span>
+      <span class="tag" style="background:#ddf4ff;color:#0550ae">Consumption bet ahead</span>
+      <span id="quarterlyRegionTag" class="tag" style="background:#ffebe9;color:#cf222e">Partner bet behind plan</span>
+      <span class="tag" style="background:#fff8c5;color:#9a6700">New logo pace needs course correction</span>
     </div>
     <div class="signal-row"><span style="color:var(--color-text-secondary);font-size:12px">Bet vs. outcome trends — FY27 growth levers</span><span class="badge badge-b">QBR prep ↗</span></div>
     <div class="signal-row"><span style="color:var(--color-text-secondary);font-size:12px">Course correction signals entering Q3</span><span class="badge badge-y">3 actions needed</span></div>
@@ -296,6 +382,68 @@ function switchTab(id, btn) {
 }
 
 const rendered = {};
+const directorConfig = {
+  all: {
+    subtitle: 'Sales leadership · FY27 Q2 · As of Apr 9, 2026',
+    region: null,
+    weeklyTag: 'APJ stage mix skewed early',
+    monthlyTag: 'APJ activity pacing −18%',
+    quarterlyTag: 'Partner bet behind plan'
+  },
+  sarah: {
+    subtitle: 'Sales leadership · FY27 Q2 · Sarah Chen (AMER Enterprise) · As of Apr 9, 2026',
+    region: 'AMER',
+    weeklyTag: 'AMER commit risk: 2 large deals need exec coverage',
+    monthlyTag: 'AMER activity pacing +4% with enterprise focus',
+    quarterlyTag: 'AMER enterprise expansion bet trending above plan'
+  },
+  marcus: {
+    subtitle: 'Sales leadership · FY27 Q2 · Marcus Reid (AMER Mid-Market) · As of Apr 9, 2026',
+    region: 'AMER',
+    weeklyTag: 'AMER mid-market stage 2 volume needs faster conversion',
+    monthlyTag: 'AMER mid-market calls pacing +2% vs target',
+    quarterlyTag: 'AMER mid-market productivity bet needs cycle-time gains'
+  },
+  priya: {
+    subtitle: 'Sales leadership · FY27 Q2 · Priya Nair (EMEA) · As of Apr 9, 2026',
+    region: 'EMEA',
+    weeklyTag: 'EMEA near-term risk: 3 deals slipped',
+    monthlyTag: 'EMEA activity pacing −12% requires manager intervention',
+    quarterlyTag: 'EMEA partner leverage bet behind expected contribution'
+  },
+  james: {
+    subtitle: 'Sales leadership · FY27 Q2 · James Okafor (APJ) · As of Apr 9, 2026',
+    region: 'APJ',
+    weeklyTag: 'APJ stage mix skewed early',
+    monthlyTag: 'APJ activity pacing −18%',
+    quarterlyTag: 'APJ coverage and partner motion need Q3 correction'
+  },
+  lucia: {
+    subtitle: 'Sales leadership · FY27 Q2 · Lucia Vargas (LATAM) · As of Apr 9, 2026',
+    region: 'LATAM',
+    weeklyTag: 'LATAM coverage stable with selective expansion upside',
+    monthlyTag: 'LATAM pacing +1% meetings while calls hold plan',
+    quarterlyTag: 'LATAM strategy: protect efficiency while scaling attach'
+  }
+};
+
+function applyDirectorContext() {
+  const selection = document.getElementById('directorFilter').value;
+  const config = directorConfig[selection] || directorConfig.all;
+
+  document.getElementById('headerSubtitle').textContent = config.subtitle;
+
+  document.querySelectorAll('.region-row').forEach((row) => {
+    row.classList.remove('row-highlight');
+    if (config.region && row.dataset.region === config.region) row.classList.add('row-highlight');
+  });
+
+  document.getElementById('weeklyRegionTag').textContent = config.weeklyTag;
+  document.getElementById('monthlyRegionTag').textContent = config.monthlyTag;
+  document.getElementById('quarterlyRegionTag').textContent = config.quarterlyTag;
+}
+
+document.getElementById('directorFilter').addEventListener('change', applyDirectorContext);
 function renderCharts() {
   const active = document.querySelector('.section.active').id;
   if (rendered[active]) return;
@@ -307,7 +455,7 @@ function renderCharts() {
       data: {
         labels: ['AMER','EMEA','APJ','LATAM'],
         datasets: [
-          { label: 'Actuals', data: [88,61,38,27], backgroundColor: '#3266ad', borderRadius: 3 },
+          { label: 'Actuals', data: [88,61,38,27], backgroundColor: '#0969da', borderRadius: 3 },
           { label: 'Plan', data: [104,68,45,30], backgroundColor: '#D3D1C7', borderRadius: 3 }
         ]
       },
@@ -325,8 +473,8 @@ function renderCharts() {
       data: {
         labels: ['Q1','Q2'],
         datasets: [
-          { label: 'New logo', data: [48,59], backgroundColor: '#3266ad', borderRadius: 3 },
-          { label: 'Expansion', data: [22,38], backgroundColor: '#1D9E75', borderRadius: 3 }
+          { label: 'New logo', data: [48,59], backgroundColor: '#0969da', borderRadius: 3 },
+          { label: 'Expansion', data: [22,38], backgroundColor: '#1a7f37', borderRadius: 3 }
         ]
       },
       options: {
@@ -343,7 +491,7 @@ function renderCharts() {
       data: {
         labels: ['Nov','Dec','Jan','Feb','Mar','Apr'],
         datasets: [
-          { label: 'Win rate %', data: [28,29,31,30,33,34], borderColor: '#3266ad', borderWidth: 2, pointRadius: 3, tension: 0.3, yAxisID: 'y' },
+          { label: 'Win rate %', data: [28,29,31,30,33,34], borderColor: '#0969da', borderWidth: 2, pointRadius: 3, tension: 0.3, yAxisID: 'y' },
           { label: 'Days to close', data: [47,45,44,42,40,39], borderColor: '#D85A30', borderWidth: 2, borderDash: [4,3], pointRadius: 3, tension: 0.3, yAxisID: 'y2' }
         ]
       },
@@ -366,7 +514,7 @@ function renderCharts() {
         labels: ['Enterprise','Mid-Market','SMB','Public sector'],
         datasets: [
           { label: 'TAM', data: [1100,780,380,240], backgroundColor: '#D3D1C7', borderRadius: 3 },
-          { label: 'Current ARR', data: [118,61,22,13], backgroundColor: '#3266ad', borderRadius: 3 }
+          { label: 'Current ARR', data: [118,61,22,13], backgroundColor: '#0969da', borderRadius: 3 }
         ]
       },
       options: {
@@ -382,7 +530,7 @@ function renderCharts() {
       type: 'doughnut',
       data: {
         labels: ['Healthy','At risk','Red','Unknown'],
-        datasets: [{ data: [58,24,11,7], backgroundColor: ['#639922','#EF9F27','#E24B4A','#B4B2A9'], borderWidth: 0 }]
+        datasets: [{ data: [58,24,11,7], backgroundColor: ['#1a7f37','#9a6700','#cf222e','#8c959f'], borderWidth: 0 }]
       },
       options: {
         responsive: true, maintainAspectRatio: false, cutout: '65%',
@@ -393,6 +541,7 @@ function renderCharts() {
 }
 
 renderCharts();
+applyDirectorContext();
 </script>
 </body>
 </html>
