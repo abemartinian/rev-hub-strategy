@@ -97,7 +97,7 @@
   </div>
   <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end">
     <span class="badge badge-y">Q2 In Flight</span>
-    <button id="exportBtn" class="export-btn" type="button">Export ↓</button>
+    <button id="exportBtn" class="export-btn" type="button" aria-label="Export dashboard data">Export ↓</button>
     <select id="sdFilter" class="director-select" aria-label="Senior Director filter">
       <option value="all">All senior directors</option>
       <option value="brittany-howard">Brittany Howard</option>
@@ -532,7 +532,9 @@ function updateKpis(person) {
   document.getElementById('kpi4Label').textContent = isSql ? 'SDR coverage signal' : 'Pipeline coverage';
   document.getElementById('kpi4Value').textContent = person.coverage;
   document.getElementById('kpi4Sub').textContent = isSql ? 'SQL pacing by region' : `Target ${TARGET_PIPELINE_COVERAGE.toFixed(1)}×`;
-  document.getElementById('kpi4Sub').className = person.coverage !== '—' && !isSql && parseFloat(person.coverage) >= TARGET_PIPELINE_COVERAGE ? 'sub up' : 'sub dn';
+  const hasCoverage = person.coverage !== '—' && !isSql;
+  const meetsTarget = hasCoverage && parseFloat(person.coverage) >= TARGET_PIPELINE_COVERAGE;
+  document.getElementById('kpi4Sub').className = meetsTarget ? 'sub up' : 'sub dn';
 }
 
 function applySelectionContext() {
@@ -553,8 +555,10 @@ function applySelectionContext() {
 
 function destroyAndRenderChart(chartId, config) {
   if (typeof Chart === 'undefined') return;
+  const canvas = document.getElementById(chartId);
+  if (!canvas) return;
   Chart.getChart(chartId)?.destroy();
-  new Chart(document.getElementById(chartId), config);
+  new Chart(canvas, config);
 }
 
 function renderCharts() {
