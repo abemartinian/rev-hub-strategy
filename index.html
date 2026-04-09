@@ -479,7 +479,7 @@ const PEOPLE = {
   'neko-case': { name: 'Neko Case', subtitle: 'Sales leadership · FY27 Q2 · Neko Case (Enterprise EMEA) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$38M', earr: '$12M', attainment: '68%', coverage: '2.9×' },
   'omar-apollo': { name: 'Omar Apollo', subtitle: 'Sales leadership · FY27 Q2 · Omar Apollo (Enterprise APAC) · As of Apr 9, 2026', region: 'APAC', metric: 'arr', arr: '$8M', earr: '$2M', attainment: '59%', coverage: '2.1×' },
   'st-vincent': { name: 'St. Vincent', subtitle: 'Sales leadership · FY27 Q2 · St. Vincent (Digital Sales AMER) · As of Apr 9, 2026', region: 'AMER', metric: 'arr', arr: '$4.8M', earr: '$1.6M', attainment: '69%', coverage: '4.4×' },
-  tems: { name: 'Tems', subtitle: 'Sales leadership · FY27 Q2 · Tems (Digital Sales EMEA) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$2.4M', earr: '$0.8M', attainment: '61%', coverage: '3.8×' },
+  'tems': { name: 'Tems', subtitle: 'Sales leadership · FY27 Q2 · Tems (Digital Sales EMEA) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$2.4M', earr: '$0.8M', attainment: '61%', coverage: '3.8×' },
   'rina-sawayama': { name: 'Rina Sawayama', subtitle: 'Sales leadership · FY27 Q2 · Rina Sawayama (Digital Sales APAC) · As of Apr 9, 2026', region: 'APAC', metric: 'arr', arr: '$0.8M', earr: '$0.2M', attainment: '52%', coverage: '—' },
   'sharon-van-etten': { name: 'Sharon Van Etten', subtitle: 'Sales leadership · FY27 Q2 · Sharon Van Etten (Mid-Market AMER) · As of Apr 9, 2026', region: 'AMER', metric: 'arr', arr: '$36M', earr: '$12M', attainment: '74%', coverage: '3.3×' },
   hozier: { name: 'Hozier', subtitle: 'Sales leadership · FY27 Q2 · Hozier (Mid-Market EMEA) · As of Apr 9, 2026', region: 'EMEA', metric: 'arr', arr: '$18M', earr: '$6M', attainment: '65%', coverage: '2.7×' },
@@ -556,7 +556,10 @@ function applySelectionContext() {
 function destroyAndRenderChart(chartId, config) {
   if (typeof Chart === 'undefined') return;
   const canvas = document.getElementById(chartId);
-  if (!canvas) return;
+  if (!canvas) {
+    console.warn(`Chart canvas not found: ${chartId}`);
+    return;
+  }
   Chart.getChart(chartId)?.destroy();
   new Chart(canvas, config);
 }
