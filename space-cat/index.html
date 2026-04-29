@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Space Cat Riding a Lawnmower</title>
+  <meta name="description" content="A tiny emoji-style space cat riding a lawnmower, hosted on GitHub Pages." />
+  <style>
+    :root {
+      --bg1: #070a1a;
+      --bg2: #0b2a5a;
+      --card: rgba(255,255,255,0.06);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --accent: #7cf7ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(1000px 600px at 20% 20%, rgba(124,247,255,0.15), transparent 60%),
+        radial-gradient(900px 700px at 80% 60%, rgba(255,140,245,0.10), transparent 55%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+      overflow-x: hidden;
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 18px 64px;
+    }
+
+    header {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+      letter-spacing: 0.2px;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      padding: 22px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+    }
+
+    .scene {
+      position: relative;
+      height: min(56vh, 420px);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 14px;
+      background:
+        radial-gradient(900px 220px at 50% 130%, rgba(0,0,0,0.65), transparent 65%),
+        radial-gradient(600px 300px at 50% 30%, rgba(124,247,255,0.10), transparent 60%);
+    }
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.9) 40%, transparent 41%),
+        radial-gradient(1px 1px at 22% 78%, rgba(255,255,255,0.65) 40%, transparent 41%),
+        radial-gradient(1px 1px at 70% 28%, rgba(255,255,255,0.7) 40%, transparent 41%),
+        radial-gradient(2px 2px at 82% 58%, rgba(255,255,255,0.85) 40%, transparent 41%),
+        radial-gradient(1px 1px at 44% 44%, rgba(255,255,255,0.7) 40%, transparent 41%),
+        radial-gradient(1px 1px at 55% 14%, rgba(255,255,255,0.6) 40%, transparent 41%),
+        radial-gradient(2px 2px at 34% 10%, rgba(255,255,255,0.85) 40%, transparent 41%),
+        radial-gradient(1px 1px at 94% 22%, rgba(255,255,255,0.65) 40%, transparent 41%),
+        radial-gradient(1px 1px at 6% 60%, rgba(255,255,255,0.7) 40%, transparent 41%),
+        radial-gradient(2px 2px at 60% 80%, rgba(255,255,255,0.8) 40%, transparent 41%);
+      opacity: 0.85;
+      filter: drop-shadow(0 0 4px rgba(124,247,255,0.15));
+      animation: twinkle 5.5s ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.78; transform: translateY(0); }
+      50% { opacity: 0.95; transform: translateY(-2px); }
+    }
+
+    .mower-track {
+      position: absolute;
+      left: -20%;
+      right: -20%;
+      bottom: 22px;
+      height: 64px;
+      background:
+        linear-gradient(90deg,
+          rgba(124,247,255,0.00),
+          rgba(124,247,255,0.10),
+          rgba(124,247,255,0.00)
+        );
+      border-top: 1px solid rgba(124,247,255,0.18);
+      border-bottom: 1px solid rgba(124,247,255,0.10);
+      transform: skewX(-18deg);
+      opacity: 0.7;
+    }
+
+    .emoji {
+      position: relative;
+      display: inline-block;
+      font-size: clamp(64px, 10vw, 116px);
+      line-height: 1;
+      filter: drop-shadow(0 18px 30px rgba(0,0,0,0.55));
+      animation: cruise 6.5s ease-in-out infinite;
+      user-select: none;
+      will-change: transform;
+    }
+
+    .emoji::after {
+      content: "";
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      bottom: -16px;
+      height: 14px;
+      background: radial-gradient(closest-side, rgba(0,0,0,0.55), transparent);
+      filter: blur(1px);
+      opacity: 0.7;
+      transform: translateZ(0);
+    }
+
+    @keyframes cruise {
+      0%   { transform: translateX(-18%) translateY(0) rotate(-1deg); }
+      50%  { transform: translateX(18%) translateY(-3px) rotate(1deg); }
+      100% { transform: translateX(-18%) translateY(0) rotate(-1deg); }
+    }
+
+    .caption {
+      margin-top: 16px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .big {
+      font-size: clamp(1.1rem, 2.0vw, 1.25rem);
+      color: var(--text);
+    }
+
+    .small {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .pillrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.18);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .pill strong {
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .footer {
+      margin-top: 16px;
+      color: rgba(255,255,255,0.62);
+      font-size: 0.92rem;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Space cat riding a lawnmower</h1>
+      <p>Emoji-style art, hosted as a tiny static site on GitHub Pages.</p>
+    </header>
+
+    <div class="card">
+      <div class="scene" aria-label="Space cat riding a lawnmower (emoji art)">
+        <div class="stars" aria-hidden="true"></div>
+        <div class="mower-track" aria-hidden="true"></div>
+
+        <!-- The “emoji” itself. Note: there's no official single emoji for this, so we compose it. -->
+        <div class="emoji" title="🚀🐱 + 🟩🛞🛞">
+          🚀🐱🟩🛞🛞
+        </div>
+      </div>
+
+      <div class="caption">
+        <div class="big">🚀🐱🟩🛞🛞</div>
+        <div class="small">(Space cat + lawnmower vibes. If you want a true single-icon SVG/PNG, we can add an image asset next.)</div>
+
+        <div class="pillrow">
+          <div class="pill"><strong>GitHub Pages:</strong> Settings → Pages → Deploy from branch → <code>/ (root)</code></div>
+          <div class="pill"><strong>URL:</strong> <code>/space-cat/</code></div>
+        </div>
+
+        <div class="footer">
+          Path: <code>space-cat/index.html</code> in <code>abemartinian/rev-hub-strategy</code>.
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
